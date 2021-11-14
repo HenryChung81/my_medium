@@ -47,12 +47,16 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
-            <strong>新規登録</strong>
-          </a>
-          <a class="button is-light">
-            ログイン
-          </a>
+
+        <% if user_signed_in? %> 
+        <%= current_user.email %>,こんにちは
+        <%= link_to "プロフィール", edit_user_registration_path, class: "button is-light" %>
+        <%= link_to "ログアウト", destroy_user_session_path, class: "button is-danger", method: "delete", data: {confirm: "ログアウトされますか？"} %>
+        <% else %>
+        <%= link_to "新規登録", new_user_registration_path, class: "button is-primary" %>
+
+        <%= link_to "ログイン", new_user_session_path, class: "button is-light" %>
+          <% end %>
         </div>
       </div>
     </div>
