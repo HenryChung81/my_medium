@@ -34,6 +34,12 @@ end
     end
   end
 
+  def destroy
+    @story.destroy
+    redirect_to stories_path, notice: "投稿を削除しました！"
+    
+  end
+
   private
   def find_story
   @story = current_user.stories.find(params[:id])
