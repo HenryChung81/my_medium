@@ -13,10 +13,14 @@ end
 
   def create
     @story = current_user.stories.new(stroy_params)
+    @story.status = "published" if params[:publish]
 
     if @story.save
-      redirect_to stories_path, notice: "保存されました！"
-
+      if params[:publish]
+        redirect_to stories_path, notice: "投稿しました！"
+      else
+        redirect_to edit_story_path(@story), notice: "下書きが保存されました！"
+      end
     else
       render :new
     end
