@@ -7,7 +7,9 @@ ruby '2.7.0'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
 gem 'aasm', '~> 5.2'
+gem 'babosa', '~> 2.0'
 gem 'devise', '~> 4.8'
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
