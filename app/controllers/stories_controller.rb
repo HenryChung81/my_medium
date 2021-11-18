@@ -32,7 +32,16 @@ end
 
   def update
     if @story.update(stroy_params)
-      redirect_to stories_path, notice: "投稿を更新しました！"
+      case 
+      when params[:publish]
+        @story.publish!
+        redirect_to stories_path, notice: "ストーリーを投稿しました！"
+      when params[:unpublish]
+        @story.unpublish!
+        redirect_to stories_path, notice: "投稿を取り消しました！"
+      else
+        redirect_to edit_story_path(@story), notice: "ストーリーを保存しました！"
+      end
     else
       render :edit
     end

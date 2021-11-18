@@ -1,3 +1,11 @@
+<% if story.errors.any?  %>
+<div class="notification is-danger">
+  <%= story.errors.full_messages.to_sentence %>
+</div>
+<% end  %>
+
+
+
 <%= form_for(story) do |form| %>
 <div class="field">
 <%= form.label :title, "見出し" %>
@@ -11,6 +19,7 @@
 
 <div class="field">
 <%= form.submit "下書きを保存", name: "save_as_draft",class: "button is-medium" %>
-<%= form.submit "投稿",name: "publish",class: "button is-medium is-primary" %>
+<%= form.submit "投稿",name: "publish",class: "button is-medium is-primary" if story.may_publish? %>
+<%= form.submit "投稿を取り消し",name: "unpublish",class: "button is-medium is-danger" if story.may_unpublish? %>
 </div>
 <% end %>
